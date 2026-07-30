@@ -18,14 +18,17 @@ app.get("/", (req, res) => {
         message: "Welcome to SteelAssist AI 🚀"
     });
 });
+// Chat Route
+app.post("/chat", (req, res) => {
 
-// Health Check Route
-app.get("/health", (req, res) => {
+    const { question } = req.body;
+
     res.json({
-        status: "Server Running Successfully"
+        success: true,
+        answer: `You asked: ${question}`
     });
-});
 
+});
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
