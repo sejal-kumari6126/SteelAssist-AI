@@ -1,34 +1,45 @@
-require("dotenv").config();
-
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
+const { GoogleGenAI } = require("@google/genai");
+
+dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
-
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Home Route
-app.get("/", (req, res) => {
-    res.json({
-        success: true,
-        message: "Welcome to SteelAssist AI 🚀"
-    });
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
 });
-// Chat Route
-app.post("/chat", (req, res) => {
 
+app.post("/ask", async (req, res) => {
+  try {
     const { question } = req.body;
 
-    res.json({
-        success: true,
-        answer: `You asked: ${question}`
+    const response = await ai.models.generateContent({
+      model: "gemini-3-flash-preview",
+      contents: question,
     });
 
+    res.json({
+      answer: response.text,
+    });
+  } catch (error) {
+  console.error("Full Error:", error);
+
+  res.status(500).json({
+    message: error.message,
+    status: error.status,
+    details: error.errorDetails || error
+  });
+
+  }
 });
+
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
