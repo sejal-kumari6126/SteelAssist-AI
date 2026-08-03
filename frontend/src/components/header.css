@@ -1,0 +1,38 @@
+.header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-content {
+    text-align: center;
+}
+
+.header h1 {
+    color: white;
+    margin: 0;
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.header p {
+    color: #b3b3b3;
+    margin-top: 8px;
+    font-size: 20px;
+}
+
+.badge {
+    position: absolute;
+    right: 0;
+    top: 10px;
+
+    background: #102a43;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+
+    font-weight: 600;
+}
