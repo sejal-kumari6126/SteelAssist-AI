@@ -1,0 +1,18 @@
+PERSONAL PROTECTIVE EQUIPMENT (PPE)
+
+PPE protects workers from workplace hazards.
+
+Types:
+- Safety Helmet
+- Safety Shoes
+- Safety Gloves
+- Safety Goggles
+- Ear Plugs
+- Face Shield
+- Respirator
+
+Rules:
+- Inspect PPE before use.
+- Wear correct PPE.
+- Replace damaged PPE.
+- Store PPE properly.

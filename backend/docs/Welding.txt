@@ -1,0 +1,58 @@
+WELDING SAFETY
+
+Purpose:
+Welding is a process of joining two or more metal parts using heat, pressure, or both. It is widely used in steel plants, fabrication, construction, and manufacturing.
+
+Hazards:
+- Electric shock
+- Burns from hot metal
+- Fire and explosion
+- Harmful fumes and gases
+- Eye damage from arc radiation
+- Flying sparks
+
+Required PPE:
+- Welding helmet with proper shade
+- Flame-resistant clothing
+- Leather welding gloves
+- Safety shoes
+- Safety goggles
+- Ear protection
+- Respiratory protection (when required)
+
+Safety Precautions:
+1. Inspect welding equipment before use.
+2. Ensure proper grounding of welding machines.
+3. Remove flammable materials from the work area.
+4. Keep a fire extinguisher nearby.
+5. Work only in well-ventilated areas.
+6. Never weld near combustible gases or liquids.
+7. Use welding screens to protect nearby workers.
+8. Follow the approved welding procedure.
+
+Before Starting Work:
+- Obtain the required work permit.
+- Inspect cables, electrode holders, and connectors.
+- Verify PPE is in good condition.
+- Check gas cylinders for leaks.
+- Ensure the work area is clean and dry.
+
+After Completing Work:
+- Switch off the welding machine.
+- Inspect the area for fire hazards.
+- Allow welded parts to cool safely.
+- Store welding equipment properly.
+- Report any damaged equipment immediately.
+
+Emergency Actions:
+- Stop welding immediately if unsafe conditions arise.
+- Inform the supervisor.
+- Use the appropriate fire extinguisher if a fire occurs.
+- Provide first aid for burns.
+- Contact the emergency response team when necessary.
+
+Best Practices:
+- Only trained and authorized personnel should perform welding.
+- Never weld in confined spaces without proper authorization.
+- Always follow Lockout Tagout (LOTO) when repairing welding equipment.
+- Maintain good housekeeping around the welding area.

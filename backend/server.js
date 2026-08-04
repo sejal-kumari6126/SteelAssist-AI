@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const {loadDocuments,findRelevantDocument} = require("./services/documentServices");
 const { GoogleGenAI } = require("@google/genai");
 
 dotenv.config();
@@ -12,15 +13,51 @@ app.use(express.json());
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
-});
+  });
+  const documents = loadDocuments();
+  console.log("Loaded documents:");
+  documents.forEach(doc => console.log(doc.name));
+  console.log(documents);
 
 app.post("/ask", async (req, res) => {
   try {
     const { question } = req.body;
+    const document = findRelevantDocument(question, documents);
+    console.log("Matched Document:", document?.name || "None");
+      let prompt = "";
 
+      if (document) {
+        prompt = `
+      You are SteelAssist AI, an AI Learning &Development Assistant.
+
+      Use ONLY the training document below to answer.
+
+      If the answer exists in the document, explain it clearly in simple points.
+
+      If the document does not contain the answer, reply exactly:
+
+      "Sorry, this information is not available in the current training documents."
+
+      Training Document:
+      ${document.content}
+
+      Question:
+      ${question}
+
+      Answer:
+      `;
+      } else {
+        prompt = `
+      You are SteelAssist AI.
+
+      No relevant training document was found.
+
+      Politely tell the user that no matching training document exists for this topic.
+      `;
+      }
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: question,
+      contents: prompt,
     });
 
     res.json({

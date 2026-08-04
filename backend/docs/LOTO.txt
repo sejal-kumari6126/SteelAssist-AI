@@ -1,0 +1,24 @@
+LOCKOUT TAGOUT (LOTO)
+
+Purpose:
+Lockout Tagout (LOTO) is a safety procedure used to ensure that machinery is completely shut down before maintenance or servicing.
+
+Objectives:
+- Prevent accidental startup
+- Protect maintenance personnel
+- Eliminate hazardous energy
+
+LOTO Procedure:
+1. Inform affected employees.
+2. Shut down equipment.
+3. Isolate all energy sources.
+4. Apply lock and tag.
+5. Release stored energy.
+6. Verify isolation.
+7. Perform maintenance.
+8. Remove lock after work completion.
+
+Benefits:
+- Prevents injuries
+- Improves workplace safety
+- Ensures OSHA compliance

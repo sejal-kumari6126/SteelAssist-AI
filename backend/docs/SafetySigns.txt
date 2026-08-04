@@ -1,0 +1,8 @@
+SAFETY SIGNS
+
+Mandatory - Blue
+Warning - Yellow
+Danger - Red
+Emergency Information - Green
+
+Always obey workplace safety signs and report damaged signs.

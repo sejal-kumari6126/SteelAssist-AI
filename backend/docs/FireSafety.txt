@@ -1,0 +1,30 @@
+FIRE SAFETY
+
+Classes of Fire
+
+Class A
+Wood, Paper, Cloth
+
+Class B
+Oil, Petrol, Diesel
+
+Class C
+Electrical Fire
+
+Class D
+Metal Fire
+
+Fire Extinguisher Types
+
+Water
+Foam
+CO2
+Dry Chemical Powder
+
+Emergency Steps
+
+Raise Alarm
+Call Emergency Team
+Use Correct Extinguisher
+Evacuate Area
+Report Incident
