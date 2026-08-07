@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const pool = require("./config/db");
 const dotenv = require("dotenv");
+require("dotenv").config();
 const {loadDocuments,findRelevantDocument} = require("./services/documentServices");
 const { GoogleGenAI } = require("@google/genai");
 
@@ -10,6 +12,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+const authRoutes = require("./routes/authRoutes");
+app.use("/api/auth", authRoutes);
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
@@ -75,7 +79,30 @@ app.post("/ask", async (req, res) => {
   }
 });
 
+app.get("/test-db", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
+});
 const PORT = process.env.PORT || 5000;
+app.get("/check-users-table", async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT column_name
+      FROM information_schema.columns
+      WHERE table_name = 'users'
+    `);
+
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
