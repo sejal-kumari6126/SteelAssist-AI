@@ -14,6 +14,8 @@ app.use(cors());
 app.use(express.json());
 const authRoutes = require("./routes/authRoutes.js");
 const chatRoutes = require("./routes/chatRoutes.js");
+const authMiddleware = require("./middleware/authMiddleware");
+const { saveMessage } = require("./models/messageModel");
 app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 
@@ -22,13 +24,16 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
   });
   const documents = loadDocuments();
-  console.log("Loaded documents:");
-  documents.forEach(doc => console.log(doc.name));
-  console.log(documents);
-
-app.post("/ask", async (req, res) => {
+  
+app.post("/ask", authMiddleware, async (req, res) => {
   try {
-    const { question } = req.body;
+    const { question, chatId } = req.body;
+    if (!chatId) {
+    return res.status(400).json({
+        error: "chatId is required"
+        });
+      }
+      await saveMessage(chatId, "user", question);
     const document = findRelevantDocument(question, documents);
     console.log("Matched Document:", document?.name || "None");
       let prompt = "";
@@ -67,8 +72,11 @@ app.post("/ask", async (req, res) => {
       contents: prompt,
     });
 
+    const answer = response.text;
+
+  await saveMessage(chatId, "ai", answer);
     res.json({
-      answer: response.text,
+        answer
     });
   } catch (error) {
   console.error("Full Error:", error);
