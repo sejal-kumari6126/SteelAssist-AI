@@ -7,6 +7,13 @@ SteelAssist AI is a full-stack AI-powered Learning & Development (L&D) assistant
 Instead of manually searching through training resources, employees can ask questions directly to the AI assistant. The system retrieves relevant training knowledge, considers employee context, and generates a grounded response using Google's Gemini API.
 
 ---
+#    🛠️ Tech Stack
+Frontend - React, Vite, JavaScript, CSS, Axios
+Backend - Node.js, Express.js, REST APIs
+Database - PostgresSQL
+Authentication - JWT, bcrypt
+AI - Google Gemini API, Retrieval-Augmented Generation (RAG)
+Development Tools - Git, GitHub, VS Code, Postman, PgAdmin 4
 
 ## 🎯 Problem Statement
 
@@ -32,7 +39,7 @@ The system uses Retrieval-Augmented Generation (RAG) to ground AI responses in t
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 ### 🔐 Authentication
 - User registration and login
@@ -110,3 +117,34 @@ PostgreSQL is used to store:
                                │
                                ▼
                        Employee Context
+```
+#🔄 RAG Workflow
+
+The AI response generation follows these steps:
+```text
+                User Question
+                      │
+                      ▼
+                Retrieve Relevant Training Knowledge
+                      │
+                      ▼
+                Retrieve Employee Context
+                      │
+                      ▼
+                Build Context
+                      │
+                      ▼
+                Send Context + Question to Gemini
+                      │
+                      ▼
+                Generate Answer
+                      │
+                      ▼
+                Save Response
+                      │
+                      ▼
+                Display Answer
+```
+The system instructs the AI to use retrieved training knowledge as its primary source and avoid inventing safety procedures.
+
+
