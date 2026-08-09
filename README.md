@@ -159,8 +159,7 @@ The system instructs the AI to use retrieved training knowledge as its primary s
 
 ### 🔐 Login
 
-![SteelAssist AI Login](
-)
+![SteelAssist AI Login](Screenshots/login.png)
 
 ### 🤖 AI Assistant
 
