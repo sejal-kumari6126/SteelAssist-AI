@@ -1,4 +1,4 @@
-<h1 align="center"># 🤖 SteelAssist AI</h1>
+<h1 align="center"> 🤖 SteelAssist AI </h1>
 <p align="center">
   AI-Powered Learning & Development Assistant
 </p>
@@ -126,7 +126,7 @@ PostgreSQL is used to store:
                                ▼
                        Employee Context
 ```
-#  🔄 RAG Workflow
+##  🔄 RAG Workflow
 
 The AI response generation follows these steps:
 ```text
