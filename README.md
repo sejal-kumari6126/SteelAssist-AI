@@ -21,7 +21,9 @@
 ![Architecture](https://img.shields.io/badge/Architecture-RAG-E34F26)
 
 </p>
+
 ---
+
 ## 🎯 Problem Statement
 
 Employees often need to search through multiple training resources to find relevant information. At the same time, learning requirements can vary depending on an employee's role, department, experience, and training history.
