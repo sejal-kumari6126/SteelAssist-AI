@@ -1,3 +1,5 @@
+# 🤖 SteelAssist AI
+
 <p align="center">
   AI-Powered Learning & Development Assistant
 </p>
