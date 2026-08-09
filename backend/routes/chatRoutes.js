@@ -3,16 +3,15 @@ const router = express.Router();
 
 const {
   newChat,
-  chatHistory,
-  messages,
-} = require("../controllers/chatController");
+  getCurrentChat,
+} = require("../controllers/chatController.js");
 
 const authMiddleware = require("../middleware/authMiddleware.js");
 
+// Create a new chat
 router.post("/", authMiddleware, newChat);
 
-router.get("/", authMiddleware, chatHistory);
-
-router.get("/:chatId", authMiddleware, messages);
+// Get current chat and its messages
+router.get("/:chatId", authMiddleware, getCurrentChat);
 
 module.exports = router;

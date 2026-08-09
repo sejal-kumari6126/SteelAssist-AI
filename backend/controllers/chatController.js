@@ -1,5 +1,9 @@
-const { createChat, getChatsByUser } = require("../models/chatModels.js");
-const { saveMessage, getMessages } = require("../models/messageModel.js");
+const {
+  createChat,
+  getChatById,
+} = require("../models/chatModels.js");
+
+const { getMessages } = require("../models/messageModel.js");
 
 const newChat = async (req, res) => {
   try {
@@ -10,35 +14,36 @@ const newChat = async (req, res) => {
 
     res.status(201).json(chat);
   } catch (err) {
-    console.error(err);
+    console.error("Create Chat Error:", err);
+
     res.status(500).json({
       error: err.message,
     });
   }
 };
 
-const chatHistory = async (req, res) => {
-  try {
-    const userId = req.user.id;
-
-    const chats = await getChatsByUser(userId);
-
-    res.json(chats);
-  } catch (err) {
-    res.status(500).json({
-      error: err.message,
-    });
-  }
-};
-
-const messages = async (req, res) => {
+const getCurrentChat = async (req, res) => {
   try {
     const { chatId } = req.params;
+    const userId = req.user.id;
 
-    const data = await getMessages(chatId);
+    const chat = await getChatById(chatId, userId);
 
-    res.json(data);
+    if (!chat) {
+      return res.status(404).json({
+        message: "Chat not found",
+      });
+    }
+
+    const messages = await getMessages(chatId);
+
+    res.json({
+      chat,
+      messages,
+    });
   } catch (err) {
+    console.error("Get Chat Error:", err);
+
     res.status(500).json({
       error: err.message,
     });
@@ -47,6 +52,5 @@ const messages = async (req, res) => {
 
 module.exports = {
   newChat,
-  chatHistory,
-  messages,
+  getCurrentChat,
 };

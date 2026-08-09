@@ -2,15 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import WelcomeCard from "./components/WelcomeCard.jsx";
 import ChatBox from "./components/Chatbox.jsx";
 import InputBox from "./components/InputBox.jsx";
 
 import Login from "./pages/Login.jsx";
-import Register from "./pages/Register";
-import ChatHistory from "./pages/ChatHistory";
+import Register from "./pages/Register.jsx";
 
 import "./App.css";
 
@@ -20,8 +18,7 @@ const ChatPage = () => {
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [chatId, setChatId] = useState(null);
-
+  const [chatId, setChatId] = useState(localStorage.getItem("currentChatId"));
   const askAI = async () => {
     if (!question.trim()) return;
 
@@ -117,25 +114,88 @@ const ChatPage = () => {
     }
   };
 
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({
+ useEffect(() => {
+  if (chatEndRef.current) {
+    chatEndRef.current.scrollIntoView({
       behavior: "smooth",
+      block: "nearest",
     });
-  }, [messages]);
+  }
+}, [messages]);useEffect(() => {
+  const loadChat = async () => {
+    const token = localStorage.getItem("token");
+    const savedChatId = localStorage.getItem("currentChatId");
+
+    if (!token || !savedChatId) return;
+
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/chat/${savedChatId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setMessages(
+        response.data.messages.map((msg) => ({
+          sender: msg.sender,
+          text: msg.message,
+        }))
+      );
+    } catch (err) {
+      console.error("Load Chat Error:", err);
+    }
+  };
+
+  loadChat();
+}, []);useEffect(() => {
+  const loadChat = async () => {
+    const token = localStorage.getItem("token");
+    const savedChatId = localStorage.getItem("currentChatId");
+
+    if (!token || !savedChatId) return;
+
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/chat/${savedChatId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setMessages(
+        response.data.messages.map((msg) => ({
+          sender: msg.sender,
+          text: msg.message,
+        }))
+      );
+    } catch (err) {
+      console.error("Load Chat Error:", err);
+    }
+  };
+
+  loadChat();
+}, []);
 
   return (
-    <div className="main">
+    <div className="chat-page">
       <Header />
 
-      {messages.length === 0 && (
-        <WelcomeCard setQuestion={setQuestion} />
-      )}
+      <div className="chat-content">
+        {messages.length === 0 && (
+          <WelcomeCard setQuestion={setQuestion} />
+        )}
 
-      <ChatBox
-        messages={messages}
-        loading={loading}
-        chatEndRef={chatEndRef}
-      />
+        <ChatBox
+          messages={messages}
+          loading={loading}
+          chatEndRef={chatEndRef}
+        />
+      </div>
 
       <InputBox
         question={question}
@@ -164,36 +224,21 @@ const App = () => {
 
       {/* Register */}
       <Route path="/register" element={<Register />} />
-      
-      <Route
-        path="/history"
-        element={
-          <ProtectedRoute>
-            <div className="app">
-              <Sidebar />
-              <ChatHistory />
-            </div>
-          </ProtectedRoute>
-        }
-      />
 
       {/* Protected Chat */}
       <Route
         path="/"
         element={
           <ProtectedRoute>
-            <div className="app"
-               style={{
-                  display: "flex",
-                  minHeight: "100vh",
-                  width: "100%",
-                }}>
-              <Sidebar />
+            <div className="app">
               <ChatPage />
             </div>
           </ProtectedRoute>
         }
       />
+
+      {/* Unknown routes */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

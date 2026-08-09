@@ -16,7 +16,7 @@ const getMessages = async (chatId) => {
     `SELECT *
      FROM messages
      WHERE chat_id = $1
-     ORDER BY created_at`,
+     ORDER BY created_at ASC`,
     [chatId]
   );
 
@@ -25,5 +25,5 @@ const getMessages = async (chatId) => {
 
 module.exports = {
   saveMessage,
-  getMessages
+  getMessages,
 };

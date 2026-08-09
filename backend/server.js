@@ -1,11 +1,15 @@
 const express = require("express");
 const cors = require("cors");
-const pool = require("./config/db");
 const dotenv = require("dotenv");
-require("dotenv").config();
-const {loadDocuments,findRelevantDocument} = require("./services/documentServices");
-const { GoogleGenAI } = require("@google/genai");
+
+const pool = require("./config/db");
+const { loadDocuments } = require("./services/documentServices");
 const { generateRAGAnswer } = require("./services/ragAnswerService");
+
+const authRoutes = require("./routes/authRoutes.js");
+const chatRoutes = require("./routes/chatRoutes.js");
+const authMiddleware = require("./middleware/authMiddleware.js");
+const { saveMessage } = require("./models/messageModel.js");
 
 dotenv.config();
 
@@ -13,19 +17,15 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-const authRoutes = require("./routes/authRoutes.js");
-const chatRoutes = require("./routes/chatRoutes.js");
-const authMiddleware = require("./middleware/authMiddleware");
-const { saveMessage } = require("./models/messageModel");
+
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 
+// Load documents for RAG
+const documents = loadDocuments();
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-  });
-  const documents = loadDocuments();
-  
+// Ask AI
 app.post("/ask", authMiddleware, async (req, res) => {
   try {
     const { question, chatId } = req.body;
@@ -49,7 +49,10 @@ app.post("/ask", authMiddleware, async (req, res) => {
     console.log("Authenticated User ID:", req.user.id);
 
     // Generate answer using RAG
-    const result = await generateRAGAnswer(question, req.user.id);
+    const result = await generateRAGAnswer(
+      question,
+      req.user.id
+    );
 
     const answer = result.answer;
 
@@ -62,7 +65,6 @@ app.post("/ask", authMiddleware, async (req, res) => {
       answer,
       sources: result.sources,
     });
-
   } catch (error) {
     console.error("Full Error:", error);
 
@@ -74,9 +76,11 @@ app.post("/ask", authMiddleware, async (req, res) => {
   }
 });
 
+// Test database connection
 app.get("/test-db", async (req, res) => {
   try {
     const result = await pool.query("SELECT NOW()");
+
     res.json(result.rows[0]);
   } catch (err) {
     res.status(500).json({
@@ -84,6 +88,8 @@ app.get("/test-db", async (req, res) => {
     });
   }
 });
+
+// Start server
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

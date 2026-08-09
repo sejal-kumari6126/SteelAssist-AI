@@ -11,19 +11,18 @@ const createChat = async (userId, title) => {
   return result.rows[0];
 };
 
-const getChatsByUser = async (userId) => {
+const getChatById = async (chatId, userId) => {
   const result = await pool.query(
     `SELECT *
      FROM chats
-     WHERE user_id = $1
-     ORDER BY created_at DESC`,
-    [userId]
+     WHERE id = $1 AND user_id = $2`,
+    [chatId, userId]
   );
 
-  return result.rows;
+  return result.rows[0];
 };
 
 module.exports = {
   createChat,
-  getChatsByUser,
+  getChatById,
 };
