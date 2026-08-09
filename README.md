@@ -155,4 +155,17 @@ The AI response generation follows these steps:
 ```
 The system instructs the AI to use retrieved training knowledge as its primary source and avoid inventing safety procedures.
 
+## 📸 Application Preview
 
+### 🔐 Login
+
+![SteelAssist AI Login](<img width="1663" height="912" alt="Screenshot 2026-08-10 025951" src="https://github.com/user-attachments/assets/ae099943-3512-43a1-93b0-0a52e216c7f3" />
+)
+
+### 🤖 AI Assistant
+
+![SteelAssist AI Chat](screenshots/chat.png)
+
+### 💬 AI Response
+
+![SteelAssist AI Response](screenshots/response.png)
