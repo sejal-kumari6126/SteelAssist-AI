@@ -1,5 +1,11 @@
+#                                   🤖 SteelAssist AI
+<p align="center">
+  AI-Powered Learning & Development Assistant
+</p>
 
-         # 🤖 SteelAssist AI
+<p align="center">
+  A full-stack RAG-based AI assistant for personalized employee training support.
+</p>
 
 <p align="center">
 
@@ -15,47 +21,7 @@
 ![Architecture](https://img.shields.io/badge/Architecture-RAG-E34F26)
 
 </p>
-
 ---
-
-## 🛠️ Tech Stack
-
-### Frontend
-
-- **React**
-- **Vite**
-- **JavaScript**
-- **CSS**
-- **Axios**
-
-### Backend
-
-- **Node.js**
-- **Express.js**
-- **REST APIs**
-
-### Database
-
-- **PostgreSQL**
-
-### Authentication & Security
-
-- **JWT**
-- **bcrypt**
-
-### AI
-
-- **Google Gemini API**
-- **Retrieval-Augmented Generation (RAG)**
-
-### Development Tools
-
-- **Git**
-- **GitHub**
-- **VS Code**
-- **Postman**
-- **pgAdmin 4**
-
 ## 🎯 Problem Statement
 
 Employees often need to search through multiple training resources to find relevant information. At the same time, learning requirements can vary depending on an employee's role, department, experience, and training history.
