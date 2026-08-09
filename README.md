@@ -1,4 +1,6 @@
+ <p align="center">
 # 🤖 SteelAssist AI
+</p>
 
 <p align="center">
   AI-Powered Learning & Development Assistant
@@ -10,8 +12,8 @@
 
 <p align="center">
 
-![React](https://img.shields.io/badge/Frontend-React-blue)
-![Node.js](https://img.shields.io/badge/Backend-Node.js-green)
+![React, Vite, JavaScript](https://img.shields.io/badge/Frontend-React-blue)
+![Node.js, Express.js, RESTAPIs](https://img.shields.io/badge/Backend-Node.js-green)
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
 ![JWT](https://img.shields.io/badge/Auth-JWT-orange)
 ![AI](https://img.shields.io/badge/AI-Gemini-purple)
