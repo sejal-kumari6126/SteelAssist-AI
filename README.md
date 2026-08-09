@@ -123,32 +123,32 @@ PostgreSQL is used to store:
                                ▼
                        Employee Context
 ```
-#🔄 RAG Workflow
+#  🔄 RAG Workflow
 
 The AI response generation follows these steps:
 ```text
-                User Question
-                      │
-                      ▼
-                Retrieve Relevant Training Knowledge
-                      │
-                      ▼
-                Retrieve Employee Context
-                      │
-                      ▼
-                Build Context
-                      │
-                      ▼
-                Send Context + Question to Gemini
-                      │
-                      ▼
-                Generate Answer
-                      │
-                      ▼
-                Save Response
-                      │
-                      ▼
-                Display Answer
+                                    User Question
+                                          │
+                                          ▼
+                                    Retrieve Relevant Training Knowledge
+                                          │
+                                          ▼
+                                    Retrieve Employee Context
+                                          │
+                                          ▼
+                                    Build Context
+                                          │
+                                          ▼
+                                    Send Context + Question to Gemini
+                                          │
+                                          ▼
+                                    Generate Answer
+                                          │
+                                          ▼
+                                    Save Response
+                                          │
+                                          ▼
+                                    Display Answer
 ```
 The system instructs the AI to use retrieved training knowledge as its primary source and avoid inventing safety procedures.
 
