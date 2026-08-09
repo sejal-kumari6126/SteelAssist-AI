@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 require("dotenv").config();
 const {loadDocuments,findRelevantDocument} = require("./services/documentServices");
 const { GoogleGenAI } = require("@google/genai");
+const { generateRAGAnswer } = require("./services/ragAnswerService");
 
 dotenv.config();
 
@@ -28,65 +29,48 @@ const ai = new GoogleGenAI({
 app.post("/ask", authMiddleware, async (req, res) => {
   try {
     const { question, chatId } = req.body;
+
     if (!chatId) {
-    return res.status(400).json({
-        error: "chatId is required"
-        });
-      }
-      await saveMessage(chatId, "user", question);
-    const document = findRelevantDocument(question, documents);
-    console.log("Matched Document:", document?.name || "None");
-      let prompt = "";
+      return res.status(400).json({
+        error: "chatId is required",
+      });
+    }
 
-      if (document) {
-        prompt = `
-      You are SteelAssist AI, an AI Learning &Development Assistant.
+    if (!question || !question.trim()) {
+      return res.status(400).json({
+        error: "Question is required",
+      });
+    }
 
-      Use ONLY the training document below to answer.
+    // Save user's question
+    await saveMessage(chatId, "user", question);
 
-      If the answer exists in the document, explain it clearly in simple points.
+    console.log("User Question:", question);
+    console.log("Authenticated User ID:", req.user.id);
 
-      If the document does not contain the answer, reply exactly:
+    // Generate answer using RAG
+    const result = await generateRAGAnswer(question, req.user.id);
 
-      "Sorry, this information is not available in the current training documents."
+    const answer = result.answer;
 
-      Training Document:
-      ${document.content}
+    console.log("RAG Sources:", result.sources);
 
-      Question:
-      ${question}
+    // Save AI response
+    await saveMessage(chatId, "ai", answer);
 
-      Answer:
-      `;
-      } else {
-        prompt = `
-      You are SteelAssist AI.
-
-      No relevant training document was found.
-
-      Politely tell the user that no matching training document exists for this topic.
-      `;
-      }
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: prompt,
-    });
-
-    const answer = response.text;
-
-  await saveMessage(chatId, "ai", answer);
     res.json({
-        answer
+      answer,
+      sources: result.sources,
     });
+
   } catch (error) {
-  console.error("Full Error:", error);
+    console.error("Full Error:", error);
 
-  res.status(500).json({
-    message: error.message,
-    status: error.status,
-    details: error.errorDetails || error
-  });
-
+    res.status(500).json({
+      message: error.message,
+      status: error.status,
+      details: error.errorDetails || error,
+    });
   }
 });
 
