@@ -1,24 +1,21 @@
-# 🤖 SteelAssist AI
+<p align="center">
+  AI-Powered Learning & Development Assistant
+</p>
 
-### AI-Powered Learning & Development Assistant
+<p align="center">
+  A full-stack RAG-based AI assistant for personalized employee training support.
+</p>
 
-SteelAssist AI is a full-stack AI-powered Learning & Development (L&D) assistant designed to help employees get relevant, practical, and personalized training support through natural-language conversations.
+<p align="center">
 
-Instead of manually searching through training resources, employees can ask questions directly to the AI assistant. The system retrieves relevant training knowledge, considers employee context, and generates a grounded response using Google's Gemini API.
+![React](https://img.shields.io/badge/Frontend-React-blue)
+![Node.js](https://img.shields.io/badge/Backend-Node.js-green)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
+![JWT](https://img.shields.io/badge/Auth-JWT-orange)
+![AI](https://img.shields.io/badge/AI-Gemini-purple)
+![RAG](https://img.shields.io/badge/Architecture-RAG-red)
 
----
-#    🛠️ Tech Stack
-Frontend - React, Vite, JavaScript, CSS, Axios
-
-Backend - Node.js, Express.js, REST APIs
-
-Database - PostgresSQL
-
-Authentication - JWT, bcrypt
-
-AI - Google Gemini API, Retrieval-Augmented Generation (RAG)
-
-Development Tools - Git, GitHub, VS Code, Postman, PgAdmin 4
+</p>
 
 ## 🎯 Problem Statement
 
