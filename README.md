@@ -9,10 +9,15 @@ Instead of manually searching through training resources, employees can ask ques
 ---
 #    🛠️ Tech Stack
 Frontend - React, Vite, JavaScript, CSS, Axios
+
 Backend - Node.js, Express.js, REST APIs
+
 Database - PostgresSQL
+
 Authentication - JWT, bcrypt
+
 AI - Google Gemini API, Retrieval-Augmented Generation (RAG)
+
 Development Tools - Git, GitHub, VS Code, Postman, PgAdmin 4
 
 ## 🎯 Problem Statement
