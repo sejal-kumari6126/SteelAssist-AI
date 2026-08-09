@@ -1,25 +1,60 @@
- <p align="center">
+
          # 🤖 SteelAssist AI
-</p>
-
-<p align="center">
-  AI-Powered Learning & Development Assistant
-</p>
-
-<p align="center">
-  A full-stack RAG-based AI assistant for personalized employee training support.
-</p>
 
 <p align="center">
 
-![React]![Vite](https://img.shields.io/badge/Frontend-React-blue)
-![Node.js, Express.js, RESTAPIs](https://img.shields.io/badge/Backend-Node.js-green)
-![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
-![JWT](https://img.shields.io/badge/Auth-JWT-orange)
-![AI](https://img.shields.io/badge/AI-Gemini-purple)
-![RAG](https://img.shields.io/badge/Architecture-RAG-red)
+![Frontend](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react&logoColor=white)
+![Build Tool](https://img.shields.io/badge/Build%20Tool-Vite-646CFF?logo=vite&logoColor=white)
+![Language](https://img.shields.io/badge/Language-JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![Backend](https://img.shields.io/badge/Backend-Node.js-339933?logo=node.js&logoColor=white)
+![Framework](https://img.shields.io/badge/Framework-Express.js-000000?logo=express&logoColor=white)
+![Database](https://img.shields.io/badge/Database-PostgreSQL-4169E1?logo=postgresql&logoColor=white)
+![Authentication](https://img.shields.io/badge/Auth-JWT-000000?logo=jsonwebtokens&logoColor=white)
+![Security](https://img.shields.io/badge/Security-bcrypt-003A70)
+![AI](https://img.shields.io/badge/AI-Gemini-8E75B2?logo=google&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-RAG-E34F26)
 
 </p>
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- **React**
+- **Vite**
+- **JavaScript**
+- **CSS**
+- **Axios**
+
+### Backend
+
+- **Node.js**
+- **Express.js**
+- **REST APIs**
+
+### Database
+
+- **PostgreSQL**
+
+### Authentication & Security
+
+- **JWT**
+- **bcrypt**
+
+### AI
+
+- **Google Gemini API**
+- **Retrieval-Augmented Generation (RAG)**
+
+### Development Tools
+
+- **Git**
+- **GitHub**
+- **VS Code**
+- **Postman**
+- **pgAdmin 4**
 
 ## 🎯 Problem Statement
 
