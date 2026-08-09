@@ -1,5 +1,5 @@
  <p align="center">
-# 🤖 SteelAssist AI
+         # 🤖 SteelAssist AI
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
 
 <p align="center">
 
-![React, Vite, JavaScript](https://img.shields.io/badge/Frontend-React-blue)
+![React]![Vite](https://img.shields.io/badge/Frontend-React-blue)
 ![Node.js, Express.js, RESTAPIs](https://img.shields.io/badge/Backend-Node.js-green)
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
 ![JWT](https://img.shields.io/badge/Auth-JWT-orange)
