@@ -1,39 +1,83 @@
-.welcome-card{
-    display:flex;
-    align-items:center;
-    gap:30px;
-    background:#111d35;
-    border:1px solid #1d3557;
-    border-radius:20px;
-    padding:30px;
-    margin:30px 0;
+.welcome-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+
+    background: #111d35;
+    border: 1px solid #1d3557;
+    border-radius: 20px;
+
+    padding: 40px 30px;
+    margin: 30px 0;
+
+    text-align: center;
 }
 
-.welcome-icon{
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    background:#2563eb;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    color:white;
-    box-shadow:0 0 20px #2563eb;
+
+/* Welcome icon */
+.welcome-icon {
+    width: 75px;
+    height: 75px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+    color: white;
+
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
 }
 
-.welcome-text h2{
-    color:white;
-    margin-bottom:10px;
+
+/* Text section */
+.welcome-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.welcome-text p{
-    color:#d1d5db;
-    line-height:1.8;
+
+.welcome-text h2 {
+    color: white;
+
+    margin: 0 0 8px;
+
+    font-size: 28px;
+    text-align: center;
 }
-.typing{
-    color:#60a5fa;
-    margin-top:15px;
-    font-size:16px;
-    font-style:italic;
+
+
+.welcome-text p {
+    color: #d1d5db;
+
+    margin: 0;
+
+    line-height: 1.6;
+    font-size: 16px;
+
+    text-align: center;
+
+    max-width: 650px;
+}
+
+
+/* Typing / additional text */
+.typing {
+    color: #60a5fa;
+
+    margin-top: 8px;
+
+    font-size: 15px;
+    font-style: italic;
+
+    text-align: center;
 }

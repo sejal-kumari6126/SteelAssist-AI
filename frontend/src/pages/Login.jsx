@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,16 +14,19 @@ function Login() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -31,14 +35,10 @@ function Login() {
         return;
       }
 
-      // Save JWT token
       localStorage.setItem("token", data.token);
-
-      // Save user information
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      // Go to Home
-      navigate("/");
+      navigate("/chat");
     } catch (error) {
       console.error(error);
       setError("Unable to connect to server");
@@ -46,73 +46,81 @@ function Login() {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
+    <div className="login-page">
+      <div className="login-card">
+
+        <div className="login-logo">
+          🤖
+        </div>
+
         <h1>SteelAssist AI</h1>
-        <p>Login to your account</p>
+
+        <p className="login-subtitle">
+          Your AI Learning & Development Assistant
+        </p>
+
+        <div className="login-divider"></div>
+
+        <h2>Welcome Back</h2>
+
+        <p className="login-description">
+          Login to continue your personalized learning experience.
+        </p>
 
         <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="input-group">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-          {error && <p style={styles.error}>{error}</p>}
+          <div className="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-          <button type="submit">Login</button>
+          {error && (
+            <p className="login-error">
+              {error}
+            </p>
+          )}
+
+          <button type="submit" className="login-button">
+            Login
+            <span>→</span>
+          </button>
+
         </form>
 
-        <p>
+        <p className="register-text">
           Don't have an account?{" "}
           <span
-            style={styles.link}
             onClick={() => navigate("/register")}
+            className="register-link"
           >
-            Register
+            Create an account
           </span>
         </p>
+
+        <div className="ai-badge">
+          🤖 AI Powered
+        </div>
+
       </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#0b1220",
-  },
-
-  card: {
-    width: "400px",
-    padding: "35px",
-    borderRadius: "15px",
-    background: "#111c35",
-    color: "white",
-    textAlign: "center",
-  },
-
-  error: {
-    color: "#ff6b6b",
-  },
-
-  link: {
-    color: "#4f8cff",
-    cursor: "pointer",
-  },
-};
 
 export default Login;

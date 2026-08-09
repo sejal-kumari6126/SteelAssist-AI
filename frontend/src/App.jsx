@@ -219,6 +219,12 @@ const ProtectedRoute = ({ children }) => {
 const App = () => {
   return (
     <Routes>
+      {/* Opening the application → Login */}
+      <Route
+        path="/"
+        element={<Navigate to="/login" replace />}
+      />
+
       {/* Login */}
       <Route path="/login" element={<Login />} />
 
@@ -227,7 +233,7 @@ const App = () => {
 
       {/* Protected Chat */}
       <Route
-        path="/"
+        path="/chat"
         element={
           <ProtectedRoute>
             <div className="app">
@@ -238,7 +244,10 @@ const App = () => {
       />
 
       {/* Unknown routes */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route
+        path="*"
+        element={<Navigate to="/login" replace />}
+      />
     </Routes>
   );
 };
