@@ -19,6 +19,14 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [chatId, setChatId] = useState(localStorage.getItem("currentChatId"));
+
+  useEffect(() => {
+    if (chatId) {
+      localStorage.setItem("currentChatId", chatId);
+    } else {
+      localStorage.removeItem("currentChatId");
+    }
+  }, [chatId]);
   const askAI = async () => {
     if (!question.trim()) return;
 
@@ -114,72 +122,45 @@ const ChatPage = () => {
     }
   };
 
- useEffect(() => {
-  if (chatEndRef.current) {
-    chatEndRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-    });
-  }
-}, [messages]);useEffect(() => {
-  const loadChat = async () => {
-    const token = localStorage.getItem("token");
-    const savedChatId = localStorage.getItem("currentChatId");
-
-    if (!token || !savedChatId) return;
-
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/chat/${savedChatId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setMessages(
-        response.data.messages.map((msg) => ({
-          sender: msg.sender,
-          text: msg.message,
-        }))
-      );
-    } catch (err) {
-      console.error("Load Chat Error:", err);
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
     }
-  };
+  }, [messages]);
 
-  loadChat();
-}, []);useEffect(() => {
-  const loadChat = async () => {
-    const token = localStorage.getItem("token");
-    const savedChatId = localStorage.getItem("currentChatId");
+  useEffect(() => {
+    const loadChat = async () => {
+      const token = localStorage.getItem("token");
+      const savedChatId = localStorage.getItem("currentChatId");
 
-    if (!token || !savedChatId) return;
+      if (!token || !savedChatId) return;
 
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/chat/${savedChatId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/chat/${savedChatId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-      setMessages(
-        response.data.messages.map((msg) => ({
-          sender: msg.sender,
-          text: msg.message,
-        }))
-      );
-    } catch (err) {
-      console.error("Load Chat Error:", err);
-    }
-  };
+        setMessages(
+          response.data.messages.map((msg) => ({
+            sender: msg.sender,
+            text: msg.message,
+          }))
+        );
+      } catch (err) {
+        console.error("Load Chat Error:", err);
+      }
+    };
 
-  loadChat();
-}, []);
+    loadChat();
+  }, []);
 
   return (
     <div className="chat-page">
